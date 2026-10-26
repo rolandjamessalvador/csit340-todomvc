@@ -30,6 +30,10 @@ function Todos() {
     setTodos(todos.filter((todo) => todo.id !== id))
   }
 
+  function handleClearCompleted() {
+  setTodos(todos.filter((todo) => !todo.completed))
+}
+
   
 
   return (
@@ -101,7 +105,7 @@ function Todos() {
           <span>
           <strong className="font-light">{itemsLeft}</strong>{' '}
           {itemsLeft === 1 ? 'item' : 'items'} left
-          
+
          </span>
 
           <ul className="flex justify-center gap-1">
@@ -131,9 +135,14 @@ function Todos() {
             </li>
           </ul>
 
-          <button type="button" className="cursor-pointer justify-self-end hover:underline">
+           {todos.some((todo) => todo.completed) && (
+          <button
+          type="button"
+          onClick={handleClearCompleted}
+           className="cursor-pointer justify-self-end hover:underline">
             Clear completed
           </button>
+          )}
           
         </footer>
          </>
